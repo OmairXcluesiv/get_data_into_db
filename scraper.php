@@ -33,7 +33,7 @@ for($i=0;$i<=$max_loop;$i++){
  $no_ws =  preg_replace('/\s+/', '', $p_text);
  echo "Product Price:"  . $no_ws . "\n\n\n\n\n";
  
- articles = array(array('sno => "1", 'title' => strip_tags($r[$i]) , 'price' => $no_ws));
+ articles = array(array('sno' => "1", 'title' => strip_tags($r[$i]) , 'price' => $no_ws));
  
  foreach ($articles as $article) {
   $exists = $db->query("SELECT * FROM data WHERE sno = " . $db->quote($article->sno))->fetchObject();
