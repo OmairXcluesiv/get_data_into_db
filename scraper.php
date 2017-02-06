@@ -20,7 +20,7 @@ try {
 function data_refine($data){
   $st = strip_tags($data);
   $ws = preg_replace('/\s+/', '', $st);
-  return $s;
+  return $ws;
 }
 
 // link of config ebay to get the data
