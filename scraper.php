@@ -12,7 +12,7 @@ try {
   $db->query('CREATE TABLE data(
     sno int(10),
     title VARCHAR(100),
-    price int(10),
+    price VARCHAR(10),
     PRIMARY KEY (sno))');
 } catch (Exception $e) {
 }
