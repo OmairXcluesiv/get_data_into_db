@@ -18,8 +18,8 @@ try {
 }
 
 function data_refine($data){
-  $st = strip_tags($data);
-  $ws = preg_replace('/\s+/', '', $st);
+  $st = strip_tags($data);  // Removes HTML tags here
+  $ws = preg_replace('/\s+/', '', $st); // Removes whitespaces from here
   return $ws;
 }
 
@@ -27,7 +27,7 @@ function data_refine($data){
 $html = scraperwiki::scrape("http://www.ebay.com/sch/i.html?_from=R40&_trksid=p2050601.m570.l1313.TR0.TRC0.H0.XAmerican+Revolutionary+War&_nkw=American+Revolutionary+War&_sacat=0");
 
 $count= 0; // Intial state of counter
-$max_loop= 50; // set the loop value 
+$max_loop= 50; // set the loop value (end)
 
    for($i=0;$i<=$max_loop;$i++){
      $dom = new simple_html_dom();
@@ -43,8 +43,24 @@ $max_loop= 50; // set the loop value
  echo "Product Title: " .  data_refine($r[$i]) . "\n";
  echo "Product Price:"  .  data_refine($m[$i]) . "\n\n\n\n\n";
  
-// $articles = array(array('sno' => $sno , 'title' => strip_tags($r[$i]) , 'price' => $no_ws));
+    
+ $articles = array(array('sno' => $sno , 'title' => strip_tags($r[$i]) , 'price' => $no_ws));
  
+  foreach ($articles as $article) {
+  $exists = $db->query("SELECT * FROM data WHERE sno = ". $db->quote($article->sno))->fetchObject();
+  
+  if (!$exists) {
+    $sql = "INSERT INTO data(sno, title, price) VALUES(:sno, :title, :price)";
+  } else {
+    $sql = "UPDATE data SET title = :title, price = :price WHERE sno = :sno";
+  }
+  $statement = $db->prepare($sql);
+    $statement->execute(array(
+    ':sno' => $article['sno'], 
+    ':title' => $article['title'],
+    ':price' => $article['price']
+  ));
+  }
  }
 ?>
 
