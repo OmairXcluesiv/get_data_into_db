@@ -10,7 +10,7 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 // creating sqlite database 
 try {
   $db->query('CREATE TABLE data(
-    sno int(100),
+    sno int(10),
     title VARCHAR(100),
     price int(10),
     PRIMARY KEY (sno))');
@@ -32,14 +32,14 @@ $max_loop = 50; // set the loop value
     //To count the collected data
    if($r[$i]  || $m[$i] !=""){ $count++;}
  
- $serial = $i;
- echo "Sno: " . $serial . "\n";
+ $sno = $i;
+ echo "Sno: " . $sno . "\n";
  echo "Product Title: " . strip_tags($r[$i]) . "\n";
  $p_text = strip_tags($m[$i]); // replace all HTML tags with plain text 
  $no_ws =  preg_replace('/\s+/', '', $p_text); // remove one or more than one whitespace from grabbed data
  echo "Product Price:"  . $no_ws . "\n\n\n\n\n";
  
- $articles = array(array('sno' => $serial , 'title' => strip_tags($r[$i]) , 'price' => $no_ws));
+ $articles = array(array('sno' => $sno , 'title' => strip_tags($r[$i]) , 'price' => $no_ws));
  
  foreach ($articles as $article) {
   $exists = $db->query("SELECT * FROM data WHERE sno = ". $db->quote($article->sno))->fetchObject();
