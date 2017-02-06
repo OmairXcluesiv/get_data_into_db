@@ -48,7 +48,6 @@ $max_loop= 50; // set the loop value (end)
   foreach ($articles as $article) {
   $exists = $db->query("SELECT * FROM data");
   $sql = "INSERT INTO data(sno, title, price) VALUES(:sno, :title, :price)";
-  }
   $statement = $db->prepare($sql);
     $statement->execute(array(
     ':sno' => $article['sno'], 
