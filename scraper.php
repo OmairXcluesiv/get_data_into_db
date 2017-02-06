@@ -12,8 +12,7 @@ try {
   $db->query('CREATE TABLE data(
     sno int(10),
     title VARCHAR(100),
-    price VARCHAR(10),
-    PRIMARY KEY (sno))');
+    price VARCHAR(10))');
 } catch (Exception $e) {
 }
 
@@ -47,7 +46,7 @@ $max_loop= 50; // set the loop value (end)
  $articles = array(array('sno' => $sno , 'title' => strip_tags($r[$i]) , 'price' => $no_ws));
  
   foreach ($articles as $article) {
-  $exists = $db->query("SELECT * FROM data WHERE sno = ". $db->quote($article->sno))->fetchObject();
+  $exists = $db->query("SELECT * FROM data");
   
   if (!$exists) {
     $sql = "INSERT INTO data(sno, title, price) VALUES(:sno, :title, :price)";
