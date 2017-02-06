@@ -12,7 +12,7 @@ try {
   $db->query('CREATE TABLE data(
     sno int(10),
     title VARCHAR(100),
-    price VARCHAR(10),
+    price VARCHAR(50),
     PRIMARY KEY(sno))');
 } catch (Exception $e) {
 }
@@ -54,8 +54,7 @@ $max_loop= 50; // set the loop value (end)
   if (!$exists) {
     $sql = "INSERT INTO data(sno, title, price) VALUES(:sno, :title, :price)";
   } else {
-    //$sql = "UPDATE data SET description = :description, article_timestamp = :article_timestamp WHERE guid = :guid";
-    echo "if dosen't exists";
+    $sql = "UPDATE data SET title = :title, price = :price WHERE sno = :sno";
   }
   $statement = $db->prepare($sql);
     $statement->execute(array(
