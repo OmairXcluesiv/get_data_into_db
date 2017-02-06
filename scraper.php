@@ -43,4 +43,10 @@ $max_loop = 50; // set the loop value
  
  $sql = "INSERT INTO data(sno, title, price) VALUES(:sno, :title, :price)";
  }
+ $statement = $db->prepare($sql);
+    $statement->execute(array(
+    ':sno' => $article['sno'], 
+    ':title' => $article['title'],
+    ':price' => $article['price']
+  ));
 ?>
