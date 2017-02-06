@@ -56,4 +56,5 @@ $max_loop = 50; // set the loop value
     ':price' => $article['price']
   ));
   }
+ }
 ?>
