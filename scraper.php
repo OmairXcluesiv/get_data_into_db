@@ -40,12 +40,12 @@ $max_loop= 50; // set the loop value (end)
  $sno = $i;
  echo "Sno: " . $sno . "\n";
  echo "Product Title: " .  strip_tags($r[$i]) . "\n";
- echo "Product Price:"  .  data_refine($m[$i]) . "\n\n\n\n\n";
+ echo "Product Price: " .  data_refine($m[$i]) . "\n\n\n\n\n";
  
     
  $articles = array(array('sno' => $sno , 'title' => strip_tags($r[$i]) , 'price' => data_refine($m[$i])));
- print_r($articles);
- die();
+// print_r($articles);
+ //die();
   foreach ($articles as $article) {
   $exists = $db->query("SELECT * FROM data");
   $sql = "INSERT INTO data(sno, title, price) VALUES(:sno, :title, :price)";
