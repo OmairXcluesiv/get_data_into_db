@@ -41,7 +41,6 @@ $max_loop = 50; // set the loop value
  
  $articles = array(array('sno' => $sno , 'title' => strip_tags($r[$i]) , 'price' => $no_ws));
  
- 
-
-}
+ $sql = "INSERT INTO data(sno, title, price) VALUES(:sno, :title, :price)";
+ }
 ?>
