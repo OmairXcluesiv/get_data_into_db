@@ -33,7 +33,7 @@ $max_loop = 50; // set the loop value
    if($r[$i]  || $m[$i] !=""){ $count++;}
  
  $serial = $i;
- echo "Sno: " . $serial;
+ echo "Sno: " . $serial . "\n";
  echo "Product Title: " . strip_tags($r[$i]) . "\n";
  $p_text = strip_tags($m[$i]); // replace all HTML tags with plain text 
  $no_ws =  preg_replace('/\s+/', '', $p_text); // remove one or more than one whitespace from grabbed data
