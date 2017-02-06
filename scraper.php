@@ -42,9 +42,17 @@ $max_loop= 50; // set the loop value (end)
  echo "Sno: " . $sno . "\n";
  echo "Product Title: " .  strip_tags($r[$i]) . "\n";
  echo "Product Price: " .  data_refine($m[$i]) . "\n\n\n\n\n";
- 
+ $pt = strip_tags($r[$i]);
+ $pp = data_refine($m[$i]);
+     
+ // Perform queries 
+mysqli_query($db,"SELECT * FROM data");
+mysqli_query($db,"INSERT INTO data (sno,title,price) 
+VALUES (sno,'$pt','$pp')");
+
+mysqli_close($con);
     
- $articles = array(array('sno' => $sno , 'title' => strip_tags($r[$i]) , 'price' => data_refine($m[$i])));
+/* $articles = array(array('sno' => $sno , 'title' => strip_tags($r[$i]) , 'price' => data_refine($m[$i])));
 // print_r($articles);
  //die();
  foreach ($articles as $article) {
@@ -61,7 +69,7 @@ $max_loop= 50; // set the loop value (end)
     ':title' => $article['title'],
     ':price' => $article['price']
   ));
-  }
+  }*/
  }
 ?>
 
