@@ -32,15 +32,17 @@ $max_loop = 50; // set the loop value
     //To count the collected data
    if($r[$i]  || $m[$i] !=""){ $count++;}
  
+ $serial = $i;
+ echo "Sno: " . $serial;
  echo "Product Title: " . strip_tags($r[$i]) . "\n";
  $p_text = strip_tags($m[$i]); // replace all HTML tags with plain text 
  $no_ws =  preg_replace('/\s+/', '', $p_text); // remove one or more than one whitespace from grabbed data
  echo "Product Price:"  . $no_ws . "\n\n\n\n\n";
  
- $articles = array(array('sno' => "1", 'title' => strip_tags($r[$i]) , 'price' => $no_ws));
+ $articles = array(array('sno' => $serial , 'title' => strip_tags($r[$i]) , 'price' => $no_ws));
  
  foreach ($articles as $article) {
-  $exists = $db->query("SELECT * FROM data WHERE sno = " . $db->quote($article->sno))->fetchObject();
+  $exists = $db->query("SELECT * FROM data WHERE sno = ". $db->quote($article->sno))->fetchObject();
   if (!$exists) {
     $sql = "INSERT INTO data(sno, title, price) VALUES(:sno, :title, :price)";
   } else {
