@@ -17,9 +17,10 @@ try {
 } catch (Exception $e) {
 }
 
-function ref_tags($data){
-  
-  return strip_tags($data);
+function data_refine($data){
+  $st = strip_tags($data);
+  $ws = preg_replace('/\s+/', '', $st);
+  return $s;
 }
 
 // link of config ebay to get the data
@@ -39,12 +40,10 @@ $max_loop= 50; // set the loop value
  
  $sno = $i;
  echo "Sno: " . $sno . "\n";
- echo "Product Title: " .  ref_tags($r[$i]) . "\n";
- $p_text = strip_tags($m[$i]); // replace all HTML tags with plain text 
- $no_ws =  preg_replace('/\s+/', '', $p_text); // remove one or more than one whitespace from grabbed data
- echo "Product Price:"  . $no_ws . "\n\n\n\n\n";
+ echo "Product Title: " .  data_refine($r[$i]) . "\n";
+ echo "Product Price:"  .  data_refine($m[$i]) . "\n\n\n\n\n";
  
- $articles = array(array('sno' => $sno , 'title' => strip_tags($r[$i]) , 'price' => $no_ws));
+// $articles = array(array('sno' => $sno , 'title' => strip_tags($r[$i]) , 'price' => $no_ws));
  
  }
 ?>
