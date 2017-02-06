@@ -41,6 +41,7 @@ $max_loop = 50; // set the loop value
  
  $articles = array(array('sno' => $sno , 'title' => strip_tags($r[$i]) , 'price' => $no_ws));
  
+ foreach($articles as $article){
  $sql = "INSERT INTO data(sno, title, price) VALUES(:sno, :title, :price)";
  }
  $statement = $db->prepare($sql);
@@ -49,4 +50,7 @@ $max_loop = 50; // set the loop value
     ':title' => $article['title'],
     ':price' => $article['price']
   ));
+  }
+
+
 ?>
