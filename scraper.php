@@ -39,7 +39,7 @@ $max_loop= 50; // set the loop value (end)
  
  $sno = $i;
  echo "Sno: " . $sno . "\n";
- echo "Product Title: " .  data_refine($r[$i]) . "\n";
+ echo "Product Title: " .  $r[$i] . "\n";
  echo "Product Price:"  .  data_refine($m[$i]) . "\n\n\n\n\n";
  
     
